@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegan</title>
+    <link rel="icon" href="/img/chef.png" type="png/svg">
+    <style>
+        .mealItem {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.79);
+            min-width: 200px;
+            margin: 25px;
+        }
+
+        .mealImgCont {
+            width: 100%;
+            display: flex;
+        }
+
+        img.mealImg {
+            width: 100%;
+        }
+
+        .mealName {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .recipeBtn {
+            display: flex;
+            justify-content: center;
+            width: 150px;
+            font-size: 20px;
+            text-decoration: none;
+            color: white;
+            background: green;
+            padding: 15px 0;
+            margin: 5px 0 20px 0;
+            border-radius: 20px;
+        }
+
+        .recipeBtn:hover {
+            background-color: rgb(1, 87, 1);
+        }
+
+        @media screen and (min-width: 1000px) {
+            .searchResult {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+
+        /*modal for recipe*/
+
+        .mealDetails {
+            position: fixed;
+            display: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            background-color: #95AF7E;
+            border-radius: 20px;
+            padding: 20px;
+            width: 60%;
+            height: 60%;
+            overflow-y: scroll;
+        }
+
+        .showRecipe {
+            display: block;
+        }
+
+        .mealDetails::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .mealDetails::-webkit-scrollbar-thumb {
+            background: #424e38;
+            border-radius: 20px;
+        }
+
+        .mealDetailsContent {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #mealDetailsCloseButton {
+            background-color: white;
+            color: #424e38;
+            border: 0px;
+            width: 40px;
+            height: 40px;
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .recipeName,
+        .Istructions {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 25px;
+            font-weight: 500;
+        }
+
+        .recipeCategory {
+            background-color: white;
+            color: #424e38;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 20px;
+        }
+
+        .recipeIstructions {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 18px;
+            margin: 0 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img id="recipeImg" src="" alt="">
+    <h1 id="recipeName"> </h1>
+    <div id="searchResult" class="searchResult"></div>
+
+    <!-- Modal for recipe -->
+    <div class="mealDetails">
+        <button type="button" id="mealDetailsCloseButton" onclick="closeRecipe()">X</button>
+        <div class="mealDetailsContent">
+            <p class="recipeName"></p>
+            <p class="recipeCategory"></p>
+            <p class="Istructions">Instructions:</p>
+            <p class="recipeIstructions"></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded",
+            function (event) {
+                fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=vegan")
+                    .then(response => response.json())
+                    .then(data => {
+                        let content = "";
+                        if (data.meals) {
+                            for (let i = 0; i < data.meals.length; i++) {
+                                content += `<div id="meal" class="mealItem">
+                <div class="mealImgCont">
+                    <img src=${data.meals[i].strMealThumb} alt="meal" class="mealImg">
+                </div>
+                <div class="mealName">
+                    <h3>${data.meals[i].strMeal}</h3>
+                    <button class="recipeBtn"  value=${data.meals[i].idMeal} onclick="displayModal(event)">Get Recipe</button>
+                </div>
+            </div>`
+                            }
+                        } else {
+                            content = `<p>Sorry, we didn't find any meal with your ingridient</p>`
+                            console.log(0)
+                        }
+
+                        document.getElementById("searchResult").innerHTML = content;
+                    })
+            })
+
+        //modal for recipe
+        const mealDetails = document.querySelector(".mealDetails");
+
+        function displayModal(event) {
+            let mealId = event.target.value;
+            fetch(`https://themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    mealDetails.classList.add('showRecipe');
+                    document.querySelector(`.recipeName`).innerText = data.meals[0].strMeal;
+                    document.querySelector(`.recipeCategory`).innerText = data.meals[0].strCategory;
+                    document.querySelector(`.recipeIstructions`).innerText = data.meals[0].strInstructions;
+                })
+        }
+
+        function closeRecipe() {
+            mealDetails.classList.remove('showRecipe');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="stylesheet" href="assets/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add recipe</title>
+  <link rel="icon" href="/img/chef.png" type="png/svg">
+</head>
+
+<body>
+  <div class="new-recipe-wrapper">
+    <h3 class="main-title"><i class="fas fa-utensils"></i> Create and save a Recipe</h3>
+    <div class="panel">
+      <div class="modal-container">
+        <div class="modal">
+          <button class="modal__btn">&times;</button>
+          <h2 class="modal__title">Title here</h2>
+          <p class="modal__body"></p>
+        </div>
+      </div>
+      <div class="form-container">
+        <div class="panel-inner">
+          <form>
+            <label for="title">
+              <input class="recipe-name input is-normal" type="text" id="title" placeholder="Add a recipe name">
+            </label>
+            <label for="note">
+              <textarea type="text" class="recipe-textarea textarea is-normal" id="note" cols="30" rows="10"
+                placeholder="Add a recipe ingridients and steps"></textarea>
+            </label>
+            <input class="btn btn-add button is-dark" type="submit" value="Save your recipe">
+          </form>
+        </div>
+      </div>
+      <div class="note-container">
+      </div>
+    </div>
+  </div>
+
+  <div class="frame">
+    <a href="index.html"> <button class="custom-btn btn-1 button-1"> Main page</button> </a>
+  </div>
+
+  <script src="https://kit.fontawesome.com/f6ed158539.js" crossorigin="anonymous"></script>
+  <script src="add-recipe.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mealDetails {
+            position: fixed;
+            display: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            background-color: #95AF7E;
+            border-radius: 20px;
+            padding: 20px;
+            width: 60%;
+            height: 60%;
+            overflow-y: scroll;
+        }
+
+        .showRecipe {
+            display: block;
+        }
+
+        .mealDetails::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .mealDetails::-webkit-scrollbar-thumb {
+            background: #424e38;
+            border-radius: 20px;
+        }
+
+        .mealDetailsContent {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #mealDetailsCloseButton {
+            background-color: white;
+            color: #424e38;
+            border: 0px;
+            width: 40px;
+            height: 40px;
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .recipeName,
+        .Istructions {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 25px;
+            font-weight: 500;
+        }
+
+        .recipeCategory {
+            background-color: white;
+            color: #424e38;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 20px;
+        }
+
+        .recipeIstructions {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 18px;
+            margin: 0 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="searchInput" type="text">
+    <button id="searchButton" onclick="search()">search</button>
+    <div id="searchResult"></div>
+
+    <div class="mealDetails">
+        <button type="button" id="mealDetailsCloseButton" onclick="closeRecipe()">X</button>
+        <div class="mealDetailsContent">
+            <p class="recipeName"></p>
+            <p class="recipeCategory"></p>
+            <p class="Istructions">Instructions:</p>
+            <p class="recipeIstructions"></p>
+        </div>
+    </div>
+
+    <script src="vidget.js"></script>
+
+</body>
+
+</html>

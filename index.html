@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking book</title>
+    <link rel="icon" href="/img/chef.png" type="png/svg">
+    <link rel="stylesheet" href="./node_modules/bulma/css/bulma-rtl.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="/node_modules/owl.carousel/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="/node_modules/owl.carousel/dist/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./assets/styles.css">
+</head>
+
+<body>
+    <header>
+        <!--Navigation Part-->
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <img src="img/logo2.png" alt="logo">
+                </a>
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item">
+                        Home
+                    </a>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            Recipes
+                        </a>
+                        <div class="navbar-dropdown">
+                            <a href="soup.html" class="navbar-item" target="_blank">
+                                Soup
+                            </a>
+                            <a href="cakes.html" class="navbar-item" target="_blank">
+                                Pastry
+                            </a>
+                            <a href="dishes.html" class="navbar-item" target="_blank">
+                                Dishes
+                            </a>
+                            <a href="fish.html" class="navbar-item" target="_blank">
+                                Fish
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            Categories
+                        </a>
+                        <div class="navbar-dropdown">
+                            <a href="breakfast.html" class="navbar-item" target="_blank">
+                                Breakfast
+                            </a>
+                            <a href="cakes.html" class="navbar-item" target="_blank">
+                                Desserts
+                            </a>
+                            <a href="vegan.html" class="navbar-item" target="_blank">
+                                Vegeterian
+                            </a>
+                            <hr class="navbar-divider">
+                            <a href="dishes.html" class="navbar-item" target="_blank">
+                                Main dish
+                            </a>
+                        </div>
+                    </div>
+
+                    <div id="navbarBasicExample" class="navbar-menu">
+                        <div class="navbar-start">
+                            <a href="#contacts" class="navbar-item">
+                                Contact us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </nav>
+    </header>
+
+    <!--Quote of the Day Part-->
+    <div class="quote-wrapper">
+        <h2 class="main-text" id="main-text">Quote of the Day for Good Food Mood</h2>
+        <blockquote class="quote-text" id="quote-text"></blockquote>
+        <cite class="quote-author" id="quote-author"></cite>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <!-- Search -->
+                <div class="column is-full has-text-centered">
+                    <div class="container">
+                        <div class="searchBox">
+                            <input type="text" class="search_inp" id="searchInput" placeholder="&nbsp;Enter your ingridient">
+                            <button class="btn" class="search_btn btn-1" id="searchButton">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- Search output -->
+            <div class="columns">
+                <div class="column is-full has-text-centered">
+                    <!-- <h2>Your search result:</h2> -->
+                    <div id="searchResult" class="searchResult"></div>
+                </div>
+            </div>
+
+            <!-- Modal for recipe -->
+            <div class="mealDetails">
+                <button type="button" id="mealDetailsCloseButton" onclick="closeRecipe()">X</button>
+                <div class="mealDetailsContent">
+                    <p class="recipeName"></p>
+                    <p class="recipeCategory"></p>
+                    <p class="Istructions">Instructions:</p>
+                    <p class="recipeIstructions"></p>
+                </div>
+            </div>
+
+            <!-- Slider -->
+            <div class="columns">
+                <div class="column is-full has-text-centered">
+                    <h1 class="slider__title">Recipe of the day</h1>
+                    <div class="container">
+                        <div id="recipesError"></div>
+                        <div class="owl-carousel" id="recipeOutput"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subscribe -->
+            <div class="columns">
+                <div class="column is-full has-text-centered">
+                    <div class="container is-flex py-4 subscribe_form">
+                        <div class="content ml-5">
+                            <div class="has-text-weight-bold mb-3 subscr_name"> <i class="far fa-envelope m-1"></i>
+                                NEVER MISS A RECIPE!</div>
+                            <div class="content is-size-7 subscr_text">Sign up and receive the latest tips via email.</div>
+                        </div>
+                        <div class="column is-one-third"></div>
+                        <div class="column is-one-third is-justify-content-flex-end">
+                            <input class="input is-normal is-italic subscr_input-txt" type="email" placeholder="Your email address"
+                                id="email">
+                            <div class="has-text-danger has-text-weight-normal subscr_btn" id="wrongEmail"></div>
+                        </div>
+                        <div class="column">
+                            <button
+                                class="button has-text-white is-size-6 has-text-weight-semibold is-justify-content-flex-end subscr-btn"
+                                id="email-btn">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add new recipe form -->
+            <div class="frame">
+                <a href="add-recipe.html" target="_blank"> <button class="custom-btn btn-1 button-1"> Add your own recipe</button>
+                </a>
+            </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacts">
+        <div class="wrapper">
+            <div class="icon facebook">
+                <div class="tooltip">Facebook</div>
+                <span><i class="fab fa-facebook-f"></i></span>
+            </div>
+            <div class="icon twitter">
+                <div class="tooltip">Twitter</div>
+                <span><i class="fab fa-twitter"></i></span>
+            </div>
+            <div class="icon instagram">
+                <div class="tooltip">Instagram</div>
+                <span><i class="fab fa-instagram"></i></span>
+            </div>
+            <div class="icon github">
+                <div class="tooltip">Github</div>
+                <span><i class="fab fa-github"></i></span>
+            </div>
+            <div class="icon youtube">
+                <div class="tooltip">Youtube</div>
+                <span><i class="fab fa-youtube"></i></span>
+            </div>
+        </div>
+    </footer>
+
+        <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="/node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
+        <script src="https://kit.fontawesome.com/f6ed158539.js" crossorigin="anonymous"></script>
+        <script src="index.js"></script>
+</body>
+
+</html>
